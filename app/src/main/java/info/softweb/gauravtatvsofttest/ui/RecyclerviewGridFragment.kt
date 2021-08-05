@@ -2,7 +2,6 @@ package info.softweb.gauravtatvsofttest.ui
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +13,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import info.softweb.gauravtatvsofttest.R
+import info.softweb.gauravtatvsofttest.adapters.GridrecyclerviewAdapter
 import info.softweb.gauravtatvsofttest.databinding.FragmentRecyclerviewGridBinding
+import info.softweb.gauravtatvsofttest.model.FakeUser
 
 class RecyclerviewGridFragment : Fragment(), View.OnClickListener {
+    private lateinit var adapter: GridrecyclerviewAdapter
     private var numGrid: Int=0
     private lateinit var edtNumber: EditText
     private lateinit var btn: Button
     private lateinit var binding: FragmentRecyclerviewGridBinding
     private lateinit var recyclerView: RecyclerView
-    private var arrayList=ArrayList<Int>()
+    private var arrayList=ArrayList<FakeUser>()
 
 
     override fun onCreateView(
@@ -44,12 +46,13 @@ class RecyclerviewGridFragment : Fragment(), View.OnClickListener {
         btn=binding.btnSubmit
         edtNumber=binding.editTextTextPersonName
         btn.setOnClickListener(this)
-     /*   recyclerView.layoutManager = GridLayoutManager(this.requireActivity(),numGrid)
+        recyclerView.layoutManager = GridLayoutManager(this.requireActivity(),numGrid)
         //creating our adapter
-        val adapter = GridrecyclerviewAdapter(numGrid)
+
+         adapter = GridrecyclerviewAdapter(this.requireContext(),arrayList)
 
         //now adding the adapter to recyclerview
-        recyclerView.adapter = adapter */
+        recyclerView.adapter = adapter
     }
 
     override fun onClick(v: View?) {
@@ -67,6 +70,13 @@ class RecyclerviewGridFragment : Fragment(), View.OnClickListener {
                    {
                     numGrid=chars[1].toInt()
                    }
+
+                   for(i in 0..numGrid)
+                   {
+
+                       arrayList.add(FakeUser("Button "+i,false))
+                   }
+                   adapter.updateData(arrayList)
                 }
 
             }
