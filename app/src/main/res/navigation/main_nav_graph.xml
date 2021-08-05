@@ -10,4 +10,8 @@
         android:name="info.softweb.gauravtatvsofttest.ui.RecyclerviewGridFragment"
         android:label="fragment_recyclerview_grid"
         tools:layout="@layout/fragment_recyclerview_grid" />
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="info.softweb.gauravtatvsofttest.ui.UserListFragment"
+        android:label="UserListFragment" />
 </navigation>
