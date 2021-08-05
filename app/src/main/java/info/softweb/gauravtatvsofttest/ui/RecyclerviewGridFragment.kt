@@ -62,7 +62,11 @@ class RecyclerviewGridFragment : Fragment(), View.OnClickListener {
                }
                 else{
                    val tempNumber= Math.sqrt(edtNumber.text.toString().trim().toDouble())
-                   Log.d("tag", "onClick: "+tempNumber)
+                   val chars=tempNumber.toString().split(".")
+                   if(chars[1].length==1 && chars[1]=="0")
+                   {
+                    numGrid=chars[1].toInt()
+                   }
                 }
 
             }
